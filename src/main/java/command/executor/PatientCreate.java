@@ -17,7 +17,7 @@ public class PatientCreate extends AbstractCommandExecutor {
     private int createPatient(String command) {
         String[] wordsArray = command.split(" ");
 
-        String name = wordsArray[2] + " " + wordsArray[3] + " " + wordsArray[4];
+        String name = wordsArray[2];
 
         if (findPatient(name).isPresent()) {
             System.out.println("Patient already exists");

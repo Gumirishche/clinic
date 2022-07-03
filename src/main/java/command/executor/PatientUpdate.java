@@ -18,7 +18,7 @@ public class PatientUpdate extends AbstractCommandExecutor {
 
         var patientId = wordsArray[2];
 
-        var patientNameNew = wordsArray[3] + " " + wordsArray[4] + " " + wordsArray[5];
+        var patientNameNew = wordsArray[3];
 
         updatePatient(patientId, patientNameNew);
 

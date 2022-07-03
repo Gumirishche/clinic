@@ -68,13 +68,13 @@ public class CommandReader {
             System.out.println("""
                     create doctor name name name
                     doctors
-                    create patient name name name
+                    create patient name
                     delete patient id
                     patients
-                    update patient id newname newname newname
+                    update patient id newname
                     create appointment idDoctor idPatient date(yyyy-MM-dd) time(HH:mm)
                     delete appointment idDoctor idPatient
-                    appointments namePatient namePatient namePatient
+                    appointments namePatient
                     update appointment idDoctor idPatient status(new,in_process,awaiting_payment,canceled,completed)""");
         } else {
             System.out.println("Incorrect command");

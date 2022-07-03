@@ -18,7 +18,7 @@ public class AppointmentView extends AbstractCommandExecutor {
 
     private int viewAppointment(String command) {
         var wordsArray = command.split(" ");
-        String appointmentPatient = wordsArray[1] + " " + wordsArray[2] + " " + wordsArray[3];
+        String appointmentPatient = wordsArray[1];
         Optional<Appointment> appointments = findAppointmentPatient(appointmentPatient);
         for (Appointment appointment1 : appointment.findAll()) {
             if (appointments.isPresent()) {
