@@ -1,6 +1,6 @@
 package repository;
 
-import people.Doctor;
+import models.Doctor;
 
 import java.util.Set;
 

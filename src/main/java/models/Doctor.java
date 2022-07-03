@@ -1,11 +1,10 @@
-package people;
+package models;
 
-import java.time.Instant;
 import java.util.Objects;
 
 public class Doctor {
-    public static int idConst=0;
-    private final int id=idGen();
+    public static int idConst = 0;
+    private final int id = idGen();
     private final String name;
 
     private int idGen() {

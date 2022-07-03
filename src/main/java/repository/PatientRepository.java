@@ -1,7 +1,6 @@
 package repository;
 
-import people.Doctor;
-import people.Patient;
+import models.Patient;
 
 import java.util.Set;
 
@@ -12,6 +11,4 @@ public interface PatientRepository {
     void save(Patient patient);
 
     void remove(Patient patient);
-
-    void update(Patient patient);
 }

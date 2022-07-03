@@ -1,11 +1,8 @@
 package command.executor;
 
 import command.CommandType;
-import people.Patient;
 
-import java.util.Optional;
-
-public class PatientUpdate extends AbstractCommandExecutor{
+public class PatientUpdate extends AbstractCommandExecutor {
     @Override
     public int execute(String command) {
         return updatePatient(command);
@@ -19,11 +16,11 @@ public class PatientUpdate extends AbstractCommandExecutor{
     private int updatePatient(String command) {
         var wordsArray = command.split(" ");
 
-        var patientNameOld = wordsArray[2] +" "+ wordsArray[3] +" "+ wordsArray[4];
+        var patientId = wordsArray[2];
 
-        var patientNameNew = wordsArray[5] +" "+ wordsArray[6] +" "+ wordsArray[7];
+        var patientNameNew = wordsArray[3] + " " + wordsArray[4] + " " + wordsArray[5];
 
-        updatePatient(patientNameOld,patientNameNew);
+        updatePatient(patientId, patientNameNew);
 
         System.out.println("Patient was renamed");
 

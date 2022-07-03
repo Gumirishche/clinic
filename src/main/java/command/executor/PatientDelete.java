@@ -1,8 +1,7 @@
 package command.executor;
 
 import command.CommandType;
-import people.Doctor;
-import people.Patient;
+import models.Patient;
 
 import java.util.Optional;
 
@@ -17,12 +16,12 @@ public class PatientDelete extends AbstractCommandExecutor {
         return CommandType.DELETE_PATIENT;
     }
 
-    private int deletePatient(String command){
+    private int deletePatient(String command) {
         var wordsArray = command.split(" ");
 
-        var patientNameToRemove = wordsArray[2]+" "+wordsArray[3]+" "+wordsArray[4];
+        var id = wordsArray[2];
 
-        Optional<Patient> patientToRemove = findPatient(patientNameToRemove);
+        Optional<Patient> patientToRemove = findPatientId(Integer.parseInt(id));
 
         if (patientToRemove.isPresent()) {
             patient.remove(patientToRemove.get());

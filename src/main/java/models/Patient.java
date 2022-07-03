@@ -1,4 +1,4 @@
-package people;
+package models;
 
 import java.time.Instant;
 import java.util.Objects;
@@ -8,18 +8,17 @@ public class Patient {
     public String name;
     private final int id = idGen();
     private final Instant creationDate;
-    private Instant updateDate;
 
     private int idGen() {
         return idConst++;
     }
 
     public Patient(String name) {
-        this.name =name;
+        this.name = name;
         creationDate = Instant.now();
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -32,17 +31,8 @@ public class Patient {
     }
 
 
-
     public Instant getCreationDate() {
         return creationDate;
-    }
-
-    public Instant getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Instant updateDate) {
-        this.updateDate = updateDate;
     }
 
     @Override

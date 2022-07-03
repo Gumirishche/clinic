@@ -1,11 +1,11 @@
 package command.executor;
 
 import command.CommandType;
-import people.Doctor;
+import models.Doctor;
 
 import java.util.Optional;
 
-public class DoctorDelete extends AbstractCommandExecutor{
+public class DoctorDelete extends AbstractCommandExecutor {
     @Override
     public int execute(String command) {
         return deleteDoctor(command);
@@ -16,12 +16,12 @@ public class DoctorDelete extends AbstractCommandExecutor{
         return CommandType.DELETE_DOCTOR;
     }
 
-    private int deleteDoctor(String command){
+    private int deleteDoctor(String command) {
         var wordsArray = command.split(" ");
 
-        var doctorNameToRemove = wordsArray[2]+" "+wordsArray[3]+" "+wordsArray[4];
+        var doctorIdToRemove = wordsArray[2];
 
-        Optional<Doctor> doctorToRemove = findDoctor(doctorNameToRemove);
+        Optional<Doctor> doctorToRemove = findDoctorId(Integer.parseInt(doctorIdToRemove));
 
         if (doctorToRemove.isPresent()) {
             doctor.remove(doctorToRemove.get());
