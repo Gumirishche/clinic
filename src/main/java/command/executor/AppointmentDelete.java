@@ -2,10 +2,8 @@ package command.executor;
 
 import command.CommandType;
 import db.DB;
-import models.Appointment;
 
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class AppointmentDelete extends AbstractCommandExecutor {
     @Override
@@ -22,12 +20,12 @@ public class AppointmentDelete extends AbstractCommandExecutor {
         var wordsArray = command.split(" ");
 
         var idDoctor = Integer.parseInt(wordsArray[2]);
-        var  idPatient =Integer.parseInt(wordsArray[3]);
+        var idPatient = Integer.parseInt(wordsArray[3]);
 
-        new DB().deleteAppointment(idDoctor,idPatient);
+        new DB().deleteAppointment(idDoctor, idPatient);
 
 
-            System.out.println("appointment deleted");
+        System.out.println("appointment deleted");
 
         return 1;
     }

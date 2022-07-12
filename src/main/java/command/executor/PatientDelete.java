@@ -2,10 +2,8 @@ package command.executor;
 
 import command.CommandType;
 import db.DB;
-import models.Patient;
 
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class PatientDelete extends AbstractCommandExecutor {
     @Override

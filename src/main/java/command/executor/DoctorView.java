@@ -2,7 +2,6 @@ package command.executor;
 
 import command.CommandType;
 import db.DB;
-import models.Doctor;
 
 import java.sql.SQLException;
 

@@ -2,6 +2,7 @@ package command.executor;
 
 import command.CommandType;
 import db.DB;
+
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
@@ -28,9 +29,9 @@ public class AppointmentCreate extends AbstractCommandExecutor {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String date = LocalDateTime.parse(dateString, formatter).toString();
 
-            new DB().createAppointment(idDoctor,idPatient,date);
+        new DB().createAppointment(idDoctor, idPatient, date);
 
-            System.out.println("new appointment created");
+        System.out.println("new appointment created");
         return 1;
     }
 }
