@@ -3,6 +3,7 @@ package command;
 
 import command.executor.*;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Map;
 import java.util.Scanner;
@@ -34,7 +35,7 @@ public class CommandReader {
     /**
      * Stop reading on command "exit".
      */
-    public static void startReading() throws ParseException {
+    public static void startReading() throws ParseException, SQLException {
         Scanner s = new Scanner(System.in);
 
         int i = 1;
@@ -51,7 +52,7 @@ public class CommandReader {
      * - "delete note note-name";
      * - "notes" - to view all notes.
      */
-    private static int readCommand(Scanner s) throws ParseException {
+    private static int readCommand(Scanner s) throws ParseException, SQLException {
         var commandString = s.nextLine();
 
         CommandType commandType = getCommandType(commandString); // достаем из строки команду.
@@ -74,7 +75,7 @@ public class CommandReader {
                     update patient id newname
                     create appointment idDoctor idPatient date(yyyy-MM-dd) time(HH:mm)
                     delete appointment idDoctor idPatient
-                    appointments namePatient
+                    appointments idPatient
                     update appointment idDoctor idPatient status(new,in_process,awaiting_payment,canceled,completed)""");
         } else {
             System.out.println("Incorrect command");

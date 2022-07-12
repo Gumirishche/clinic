@@ -1,11 +1,14 @@
 package command.executor;
 
 import command.CommandType;
+import db.DB;
 import models.Patient;
+
+import java.sql.SQLException;
 
 public class PatientCreate extends AbstractCommandExecutor {
     @Override
-    public int execute(String command) {
+    public int execute(String command) throws SQLException {
         return createPatient(command);
     }
 
@@ -14,21 +17,12 @@ public class PatientCreate extends AbstractCommandExecutor {
         return CommandType.CREATE_PATIENT;
     }
 
-    private int createPatient(String command) {
+    private int createPatient(String command) throws SQLException {
         String[] wordsArray = command.split(" ");
 
         String name = wordsArray[2];
 
-        if (findPatient(name).isPresent()) {
-            System.out.println("Patient already exists");
-            return -1;
-        }
-
-        var newPatient = new Patient(name);
-
-        patient.save(newPatient);
-
-        System.out.println("new patient created" + " " + "Id:" + newPatient.getId());
+        new DB().createPatient(name);
 
         return 1;
     }

@@ -1,11 +1,14 @@
 package command.executor;
 
 import command.CommandType;
+import db.DB;
 import models.Patient;
+
+import java.sql.SQLException;
 
 public class PatientView extends AbstractCommandExecutor {
     @Override
-    public int execute(String command) {
+    public int execute(String command) throws SQLException {
         return viewPatient();
     }
 
@@ -14,11 +17,8 @@ public class PatientView extends AbstractCommandExecutor {
         return CommandType.VIEW_PATIENT;
     }
 
-    private int viewPatient() {
-        for (Patient patient1 : patient.findAll()) {
-            String date = patient1.getCreationDate().toString();
-            System.out.printf("Id: \"%s\". Name: \"%s\". Creation date: \"%s\"%n", patient1.getId(), patient1.getName(), date.substring(0, 10));
-        }
+    private int viewPatient() throws SQLException {
+        new DB().getPatient();
         return 1;
     }
 }

@@ -1,13 +1,15 @@
 package command.executor;
 
 import command.CommandType;
+import db.DB;
 import models.Doctor;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class DoctorDelete extends AbstractCommandExecutor {
     @Override
-    public int execute(String command) {
+    public int execute(String command) throws SQLException {
         return deleteDoctor(command);
     }
 
@@ -16,20 +18,13 @@ public class DoctorDelete extends AbstractCommandExecutor {
         return CommandType.DELETE_DOCTOR;
     }
 
-    private int deleteDoctor(String command) {
+    private int deleteDoctor(String command) throws SQLException {
         var wordsArray = command.split(" ");
 
         var doctorIdToRemove = wordsArray[2];
 
-        Optional<Doctor> doctorToRemove = findDoctorId(Integer.parseInt(doctorIdToRemove));
+        new DB().deleteDoctor(Integer.parseInt(doctorIdToRemove));
 
-        if (doctorToRemove.isPresent()) {
-            doctor.remove(doctorToRemove.get());
-
-            System.out.println("doctor deleted");
-        } else {
-            System.out.println("doctor not found");
-        }
 
         return 1;
     }

@@ -1,13 +1,15 @@
 package command.executor;
 
 import command.CommandType;
+import db.DB;
 import models.Appointment;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class AppointmentDelete extends AbstractCommandExecutor {
     @Override
-    public int execute(String command) {
+    public int execute(String command) throws SQLException {
         return deleteAppointment(command);
     }
 
@@ -16,21 +18,16 @@ public class AppointmentDelete extends AbstractCommandExecutor {
         return CommandType.DELETE_APPOINTMENT;
     }
 
-    private int deleteAppointment(String command) {
+    private int deleteAppointment(String command) throws SQLException {
         var wordsArray = command.split(" ");
 
-        int idDoctor = Integer.parseInt(wordsArray[2]);
-        int idPatient = Integer.parseInt(wordsArray[3]);
+        var idDoctor = Integer.parseInt(wordsArray[2]);
+        var  idPatient =Integer.parseInt(wordsArray[3]);
 
-        Optional<Appointment> appointmentToRemove = findAppointment(idDoctor, idPatient);
+        new DB().deleteAppointment(idDoctor,idPatient);
 
-        if (appointmentToRemove.isPresent()) {
-            appointment.remove(appointmentToRemove.get());
 
             System.out.println("appointment deleted");
-        } else {
-            System.out.println("appointment not found");
-        }
 
         return 1;
     }

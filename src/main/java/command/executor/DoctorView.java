@@ -1,11 +1,14 @@
 package command.executor;
 
 import command.CommandType;
+import db.DB;
 import models.Doctor;
+
+import java.sql.SQLException;
 
 public class DoctorView extends AbstractCommandExecutor {
     @Override
-    public int execute(String command) {
+    public int execute(String command) throws SQLException {
         return viewDoctor();
     }
 
@@ -14,10 +17,8 @@ public class DoctorView extends AbstractCommandExecutor {
         return CommandType.VIEW_DOCTOR;
     }
 
-    private int viewDoctor() {
-        for (Doctor doctor1 : doctor.findAll()) {
-            System.out.printf("Id: \"%s\". Name: \"%s\"%n", doctor1.getId(), doctor1.getName());
-        }
+    private int viewDoctor() throws SQLException {
+        new DB().getDoctor();
         return 1;
     }
 }

@@ -1,13 +1,15 @@
 package command.executor;
 
 import command.CommandType;
+import db.DB;
 import models.Appointment;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class AppointmentView extends AbstractCommandExecutor {
     @Override
-    public int execute(String command) {
+    public int execute(String command) throws SQLException {
         return viewAppointment(command);
     }
 
@@ -16,15 +18,10 @@ public class AppointmentView extends AbstractCommandExecutor {
         return CommandType.VIEW_APPOINTMENT;
     }
 
-    private int viewAppointment(String command) {
+    private int viewAppointment(String command) throws SQLException {
         var wordsArray = command.split(" ");
-        String appointmentPatient = wordsArray[1];
-        Optional<Appointment> appointments = findAppointmentPatient(appointmentPatient);
-        for (Appointment appointment1 : appointment.findAll()) {
-            if (appointments.isPresent()) {
-                System.out.printf("NameDoctor: \"%s\". IdDoctor: \"%s\". NamePatient: \"%s\". IdPatient: \"%s\". Date: \"%s\" Status:\"%s\"%n", appointment1.getNameDoctor(), appointment1.getIdDoctor(), appointment1.getNamePatient(), appointment1.getIdPatient(), appointment1.getDate(), appointment1.getStatus());
-            }
-        }
+        int appointmentPatient = Integer.parseInt(wordsArray[1]);
+        new DB().getAppointment(appointmentPatient);
         return 1;
     }
 }
